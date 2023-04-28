@@ -1,4 +1,4 @@
-﻿namespace StocksAPI.Models.Dto
+﻿namespace Stocks.API.Models.Dto
 {
     public class StockDTO
     {
