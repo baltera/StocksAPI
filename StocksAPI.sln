@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.API", "StocksAPI\Stocks.API.csproj", "{04D1E8D2-E794-4A39-8FB2-C08FD8DEA19B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.API", "Stocks.API\Stocks.API.csproj", "{04D1E8D2-E794-4A39-8FB2-C08FD8DEA19B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Domain", "Stocks.Domain\Stocks.Domain.csproj", "{EB47D953-FFEF-4A07-8519-0F2057FB9DA1}"
 EndProject
