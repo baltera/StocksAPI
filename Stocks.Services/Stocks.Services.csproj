@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\Stocks.Domain\Stocks.Domain.csproj" />
+    <ProjectReference Include="..\Stocks.Infrastructure\Stocks.Infrastructure.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
