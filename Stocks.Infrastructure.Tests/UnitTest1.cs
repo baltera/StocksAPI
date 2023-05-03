@@ -7,12 +7,12 @@ namespace Stocks.Infrastructure.Tests;
 public class UnitTest1
 {
     private readonly ITestOutputHelper output;
-    private readonly HttpClientService httpClientService;
+    private readonly StocksHttpClient httpClientService;
 
     public UnitTest1(ITestOutputHelper output)
     {
         this.output = output;
-        httpClientService = new HttpClientService();
+        httpClientService = new StocksHttpClient();
     }
 
     [Fact]

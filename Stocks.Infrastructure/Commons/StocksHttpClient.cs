@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Stocks.Infrastructure.Commons
+﻿namespace Stocks.Infrastructure.Commons
 {
-    public class HttpClientService
+    public class StocksHttpClient
     {
         private readonly HttpClient _httpClient;
-        public HttpClientService()
+        public StocksHttpClient()
         {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
