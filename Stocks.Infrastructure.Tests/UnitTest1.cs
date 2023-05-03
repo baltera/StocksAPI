@@ -1,4 +1,4 @@
-using Stocks.Infrastructure.Services;
+using Stocks.Infrastructure.Commons;
 using System.Net.Http;
 using Xunit.Abstractions;
 

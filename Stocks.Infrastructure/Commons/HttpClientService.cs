@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Stocks.Infrastructure.Services
+namespace Stocks.Infrastructure.Commons
 {
     public class HttpClientService
     {
         private readonly HttpClient _httpClient;
-        public HttpClientService() {
+        public HttpClientService()
+        {
             _httpClient = new HttpClient();
             _httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
         }
