@@ -7,7 +7,7 @@ namespace Stocks.Infrastructure.Tests;
 public class UnitTest1
 {
     private readonly ITestOutputHelper output;
-    private readonly IHttpClientService httpClientService;
+    private readonly HttpClientService httpClientService;
 
     public UnitTest1(ITestOutputHelper output)
     {

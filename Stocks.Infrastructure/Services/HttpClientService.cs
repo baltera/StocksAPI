@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Stocks.Infrastructure.Services
 {
-    public class HttpClientService : IHttpClientService
+    public class HttpClientService
     {
         private readonly HttpClient _httpClient;
         public HttpClientService() {
