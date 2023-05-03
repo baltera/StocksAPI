@@ -1,18 +1,19 @@
-﻿namespace Stocks.Infrastructure.Commons
+﻿using Newtonsoft.Json;
+
+namespace Stocks.Infrastructure.Commons
 {
-    public class StocksHttpClient
+    public class StocksHttpClient : HttpClient
     {
-        private readonly HttpClient _httpClient;
         public StocksHttpClient()
         {
-            _httpClient = new HttpClient();
-            _httpClient.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
+            this.BaseAddress = new Uri("https://jsonplaceholder.typicode.com/");
         }
 
-        public async Task<string> GetStocks()
+        public async Task<T> GetAsync<T>(string uri)
         {
-            var response = await _httpClient.GetAsync("posts");
-            return await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await GetAsync($"{uri}");
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
     }
 }
