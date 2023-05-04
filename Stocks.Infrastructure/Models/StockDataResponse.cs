@@ -35,8 +35,8 @@ namespace Stocks.Infrastructure.Models
         public decimal Price { get; set; }
         [JsonProperty("day_high")]
         public decimal DayHigh { get; set; }
-        [JsonProperty("DayLow")]
-        public decimal day_low { get; set; }
+        [JsonProperty("day_low")]
+        public decimal DayLow { get; set; }
         [JsonProperty("day_open")]
         public decimal DayOpen { get; set; }
         [JsonProperty("52_week_high")]
