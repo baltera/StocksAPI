@@ -10,7 +10,12 @@ Directory is build based on Clean Architecture pattern, several projects aggrega
 ### Built with
 Frameworks/libraries used in this project include:
 - .NET 6.0
-- xUnit
+- xUnit  
+
+Nuget Packages:
+- Newtonsoft Json | version 13.0.3
+- Entity Framework Core - SqlServer | version 6.0.16
+- Entity Framework Core - Tools | version 6.0.16
 
 ## Building Steps
 ### .NET Project
@@ -38,6 +43,7 @@ dotnet add Stocks.Api/Stocks.Api.csproj reference Stocks.Services/Stocks.Service
 ...
 ```
 **For the sake of documentation, only one reference is included above*
+
 
 ## Installation
 Here some installation notes.
