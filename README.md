@@ -1,8 +1,15 @@
 # StocksAPI
-## About
 Project to explore .NET Core Web functionalities, while practicing engineering concepts such as clean architecture, unit testing, dependency injection, entity framework, among others. 
 
 Business domain of the REST API build is the Stock Market. Being its main goal to provide filtered basic information for a given stock.
+
+## Table of Contents
+- [Project Structure](#project-structure)
+    - [Built with](#built-with)
+- [Building Steps](#building-steps)
+    - [Base Project](#base-project)
+- [Installation](#installation)
+- [Contributing](#contributing)
 
 ## Project Structure
 Directory is build based on a Clean Architecture pattern, several projects aggregate to a single layered solution. The structure of the application comes as a result of researching documentation, tutorials and repository examples found on the internet.
@@ -26,10 +33,11 @@ Specific Nuget Packages used:
 - Entity Framework Core - Tools | version 6.0.16
 
 ## Building Steps
-### Architectural Development
-As stated before, the project is build following a Clean Architecture philosophy. The components being build on each layer are expected to be independent and, in this way, the order of creation can change between developers based on expertise, knowledge or simple preference.
+As stated before, the project is build following a Clean Architecture philosophy. The components being build on each layer are expected to be independent and, in this way, the order of construction can change between developers based on expertise, knowledge or simple preference.
 
-### .NET Project
+For this project specifically, the order of construction is as follows:
+
+### Base Project
 First we created a .NET solution by using, either the IDE choosing an .NET Core Wep API Template, or through the CLI:
 ```
 dotnet new solution
