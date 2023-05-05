@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-namespace Stocks.Infrastructure.Data
+
+namespace Stocks.Infrastructure.Persistence.Data
 {
     public class ApplicationDBContext : DbContext
     {
