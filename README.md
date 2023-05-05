@@ -8,6 +8,8 @@ Business domain of the REST API build is the Stock Market. Being its main goal t
     - [Built with](#built-with)
 - [Building Steps](#building-steps)
     - [Base Project](#base-project)
+    - [External API Connection](#external-api-connection)
+    - [Entity Framework Core](#entity-framework-core)
 - [Installation](#installation)
 - [Contributing](#contributing)
 
@@ -37,7 +39,7 @@ As stated before, the project is build following a Clean Architecture philosophy
 
 For this project specifically, the order of construction is as follows:
 
-### Base Project
+### **Base Project**
 First we created a .NET solution by using, either the IDE choosing an .NET Core Wep API Template, or through the CLI:
 ```
 dotnet new solution
@@ -62,6 +64,35 @@ dotnet add Stocks.Api/Stocks.Api.csproj reference Stocks.Services/Stocks.Service
 ...
 ```
 **For the sake of documentation, only one reference is included above*
+
+### **External API Connection**
+In order to to provide information about stocks, more specifically quotes on current markets, the API must obtain information from an external source The external API chosen is [Stockdata.org API](https://www.stockdata.org/documentation) (free tier). Provided that we are only consuming a few endpoints and the volume of transactions won't surpass the 100 requests/day limit.
+
+Being the **Infrastructure Layer** the one in charge of interactions with the outer world (database persistence, mail sending, external identity services, external apis) this is the place where we are locating the connectivity function of our application. So we are going to be working on the path *StockAPI\Stocks.Infrastructure*. 
+
+First, we create an implementation of the HttpClient to centralize the requirements of the external API (its key, its base URL, etc.). All of this inside a *Commons* folder to keep everything organized.
+```
+\Commons\StocksHttpClient.cs
+```
+Next, a class for the specific service is created, StockDataAPIService. This is going to contain the methods that interact with the external API. All of this, hoping to be later exposed in the Service Layer through interfaces.
+```
+\Services\StockDataAPIService.cs
+```
+In parallel, in order to handle the responses from the Stock Data API an object is required so we create one specifically for this purpose. Here we need to map each section of the JSON coming as a response from the API to a property in code.
+```
+\Models\StockDataResponse.cs
+```
+
+So inside the StockDataResponse.cs the structure will be two other classes that simulate the structure of the response JSON, like so:
+```
+StockDataResponse {
+    MetaStockDataResponse, 
+    List<QuoteStockDataResponse>
+}
+```
+
+### **Entity Framework Core**
+//
 
 ## Installation
 Here some installation notes.
