@@ -109,7 +109,25 @@ As the  **Domain Layer** objective is, we are going to include here every compon
         ├── Stock.cs
         └── StockQuote.cs
 ```
+Moving on to the **Infrastructure Layer**, here we are going to define all the logic related to persist (db or external components) the reality modeled in the **Domain Layer**.  
+Here the implementations are going to be the key, as this is how our application connects to the external world. Here is where we are going define the Fluent API logic.
 
+In order to keep everything organized, we created a specific folder `Stocks.infrastructure\Persistence` and inside, we created the file responsible to handle the connection string to our database: `Data\ApplicationDBContext.cs`.
+
+Now to create a *migration*, we should open the *Package Manager Console (PM)** and run the specific command for this task.
+```
+add-migration <significant_name> -OutputDir <path_for_migrations>
+```
+Which for the case of our first migration might look like this:
+```
+add-migration AddModelToDB_TblsExchangeNStockNStockQuote -OutputDir Persistence/Migrations
+```
+**Notice that dotnet CLI commands can be used here too. Check this [link](https://learn.microsoft.com/en-us/ef/core/cli/) for further reference.* 
+
+And having our migration created, we must apply it to the database by running:
+```
+
+```
 ## Installation
 Here some installation notes.
 
