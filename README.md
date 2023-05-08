@@ -9,7 +9,7 @@ Business domain of the REST API build is the Stock Market. Being its main goal t
 - [Building Steps](#building-steps)
     - [Base Project](#base-project)
     - [External API Connection](#external-api-connection)
-    - [Entity Framework Core](#entity-framework-core)
+    - [Persistence](#persistence)
 - [Installation](#installation)
 - [Contributing](#contributing)
 
@@ -91,8 +91,9 @@ StockDataResponse {
 }
 ```
 
-### **Entity Framework Core**
-//
+### **Persistence**
+In the field of data persistence, the approach for this project is going to be a *Code First* one. We are going to model our reality using C# and then, by the help of some framework tools we are going to translate those lines of code in database structure.  
+The tools selected are **Entity Framework Core (EF)** and the **Fluent API**. The combination of both will provide us with enough ways to delimit, name, abstract and build a robust relational structure to handle the data in our application.
 
 ## Installation
 Here some installation notes.
