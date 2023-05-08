@@ -6,7 +6,7 @@ namespace Stocks.Infrastructure.Persistence.Data
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=ERAMIREZ;Databse=Stocks;TrustServerCertificate=True;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=ERAMIREZ;Database=Stocks;TrustServerCertificate=True;Trusted_Connection=True;");
         }
 
     }
