@@ -96,9 +96,11 @@ In the field of data persistence, the approach for this project is going to be a
 The tools selected are **Entity Framework Core (EF)** and the **Fluent API**. The combination of both will provide us with enough ways to delimit, name, abstract and build a robust relational structure to handle the data in our application.
 
 *Previous Requirements*  
-Using the NuGet Package Manager, install the following packages on the **Infrastructure Layer**:
+Using the NuGet Package Manager, install the following packages:
 - Entity Framework Core - SqlServer | version 6.0.16
+    - At the **Infrastructure Layer** and at the **Presentation Layer (API Project)**.
 - Entity Framework Core - Tools | version 6.0.16  
+    - Only at the **Infrastructure Layer**.
 
 *Modeling*  
 As the  **Domain Layer** objective is, we are going to include here every component that modelates the reality of the business context. In the case of our Stock API, we defined 3 main classes that can handle the basic information that we are expected to deliver to the end consumer.
