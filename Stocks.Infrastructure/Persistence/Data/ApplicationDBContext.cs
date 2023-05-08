@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Stocks.Domain.Models;
+using Stocks.Infrastructure.Persistence.FluentConfig;
 
 namespace Stocks.Infrastructure.Persistence.Data
 {
@@ -11,7 +12,13 @@ namespace Stocks.Infrastructure.Persistence.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=ERAMIREZ;Database=Stocks;TrustServerCertificate=True;Trusted_Connection=True;");
-        }        
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ExchangeConfig());
+            modelBuilder.ApplyConfiguration(new StockConfig());
+            modelBuilder.ApplyConfiguration(new StockQuoteConfig());
+        }
 
     }
 }
