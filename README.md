@@ -95,6 +95,21 @@ StockDataResponse {
 In the field of data persistence, the approach for this project is going to be a *Code First* one. We are going to model our reality using C# and then, by the help of some framework tools we are going to translate those lines of code in database structure.  
 The tools selected are **Entity Framework Core (EF)** and the **Fluent API**. The combination of both will provide us with enough ways to delimit, name, abstract and build a robust relational structure to handle the data in our application.
 
+*Previous Requirements*  
+Using the NuGet Package Manager, install the following packages on the **Infrastructure Layer**:
+- Entity Framework Core - SqlServer | version 6.0.16
+- Entity Framework Core - Tools | version 6.0.16  
+
+*Modeling*  
+As the  **Domain Layer** objective is, we are going to include here every component that modelates the reality of the business context. In the case of our Stock API, we defined 3 main classes that can handle the basic information that we are expected to deliver to the end consumer.
+```
+├── Stocks.Domain
+    ├── Models
+        ├── Exchange.cs                      
+        ├── Stock.cs
+        └── StockQuote.cs
+```
+
 ## Installation
 Here some installation notes.
 
