@@ -126,7 +126,7 @@ add-migration AddModelToDB_TblsExchangeNStockNStockQuote -OutputDir Persistence/
 
 And having our migration created, we must apply it to the database by running:
 ```
-
+update-database
 ```
 ## Installation
 Here some installation notes.
