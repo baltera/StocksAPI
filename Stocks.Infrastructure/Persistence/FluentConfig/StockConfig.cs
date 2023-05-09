@@ -9,6 +9,9 @@ namespace Stocks.Infrastructure.Persistence.FluentConfig
         public void Configure(EntityTypeBuilder<Stock> modelBuilder)
         {
             modelBuilder.ToTable("stock");
+            modelBuilder.HasOne(s => s.Exchange)
+                .WithMany(e => e.Stocks)
+                .HasForeignKey(s => s.Exchange_Id);
         }
     }
 }
