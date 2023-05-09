@@ -111,12 +111,12 @@ As the  **Domain Layer** objective is, we are going to include here every compon
         ├── Stock.cs
         └── StockQuote.cs
 ```
-Moving on to the **Infrastructure Layer**, here we are going to define all the logic related to persist (db or external components) the reality modeled in the **Domain Layer**.  
-Here the implementations are going to be the key, as this is how our application connects to the external world. Here is where we are going define the Fluent API logic.
+Moving on to the **Infrastructure Layer**, here we are going to define all the logic related to persist the reality modeled in the **Domain Layer**.  
+Here the implementations are going to be the key, as this is how our application connects to the external world. In this case in particular, Fluent API logic comes here.
 
-In order to keep everything organized, we created a specific folder `Stocks.infrastructure\Persistence` and inside, we created the file responsible to handle the connection string to our database: `Data\ApplicationDBContext.cs`.
-
-Now to create a *migration*, we should open the *Package Manager Console (PM)** and run the specific command for this task.
+In order to keep everything organized, we created the folder `Stocks.Infrastructure\Persistence` and inside this is where te following takes place:  
+First, we created the file responsible to handle the connection string to our database: `Data\ApplicationDBContext.cs`.  
+Next, to create a *migration*, we should open the *Package Manager Console (PM)** and run the specific command for this task.
 ```
 add-migration <significant_name> -OutputDir <path_for_migrations>
 ```
@@ -126,9 +126,32 @@ add-migration AddModelToDB_TblsExchangeNStockNStockQuote -OutputDir Persistence/
 ```
 **Notice that dotnet CLI commands can be used here too. Check this [link](https://learn.microsoft.com/en-us/ef/core/cli/) for further reference.* 
 
+This last Packet Manager command should leave our folder structure as follows:
+```
+├── Stocks.Infrastructure
+    ├── Persistence
+        ├── Data
+        ├   └── ApplicationDBContext.cs        
+        └── Migrations
+            ├── ApplicationDBContextModelSnapshot.cs
+            ├── 19990101120101_AddModelToDB_TblsExchangeNStockNStockQuote.cs
+            └── ...            
+```
 And having our migration created, we must apply it to the database by running:
 ```
 update-database
+```
+Finally, any configuration to our models is done in a FluentConfig folder inside the same Persistence parent folder. Here, for each one of the classes in the Domain Model folder, we can define rules and relations between them.
+
+Another run of "`add-migration`" and "`update-database`"commands should update our model in the database. Leaving our Persistence structure with the config files and new Migration classes as a result of this step.
+```
+├── Stocks.Infrastructure
+    ├── Persistence
+        ├── ...        
+        └── FluentConfig
+            ├── ExchangeConfig.cs
+            ├── StockConfig.cs
+            └── StockQuoteConfig.cs                 
 ```
 ## Installation
 Here some installation notes.
