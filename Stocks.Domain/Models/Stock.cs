@@ -6,6 +6,8 @@
         public string Symbol { get; set; }
         public string Name { get; set; }
         public string Currency { get; set; }
-        //public Exchange Exchange { get; set; }
+        public int Exchange_Id { get; set; }
+        public Exchange Exchange { get; set; }
+        public List<StockQuote> StockQuotes { get; set; }
     }
 }

@@ -9,7 +9,7 @@ Business domain of the REST API build is the Stock Market. Being its main goal t
 - [Building Steps](#building-steps)
     - [Base Project](#base-project)
     - [External API Connection](#external-api-connection)
-    - [Entity Framework Core](#entity-framework-core)
+    - [Persistence](#persistence)
 - [Installation](#installation)
 - [Contributing](#contributing)
 
@@ -66,24 +66,15 @@ dotnet add Stocks.Api/Stocks.Api.csproj reference Stocks.Services/Stocks.Service
 **For the sake of documentation, only one reference is included above*
 
 ### **External API Connection**
-In order to to provide information about stocks, more specifically quotes on current markets, the API must obtain information from an external source The external API chosen is [Stockdata.org API](https://www.stockdata.org/documentation) (free tier). Provided that we are only consuming a few endpoints and the volume of transactions won't surpass the 100 requests/day limit.
+In order to provide information about stocks, more specifically quotes on current markets, the API must obtain information from an external source The external API chosen is [Stockdata.org API](https://www.stockdata.org/documentation) (free tier). Provided that we are only consuming a few endpoints and the volume of transactions won't surpass the 100 requests/day limit.
 
 Being the **Infrastructure Layer** the one in charge of interactions with the outer world (database persistence, mail sending, external identity services, external apis) this is the place where we are locating the connectivity function of our application. So we are going to be working on the path *StockAPI\Stocks.Infrastructure*. 
 
-First, we create an implementation of the HttpClient to centralize the requirements of the external API (its key, its base URL, etc.). All of this inside a *Commons* folder to keep everything organized.
-```
-\Commons\StocksHttpClient.cs
-```
-Next, a class for the specific service is created, StockDataAPIService. This is going to contain the methods that interact with the external API. All of this, hoping to be later exposed in the Service Layer through interfaces.
-```
-\Services\StockDataAPIService.cs
-```
-In parallel, in order to handle the responses from the Stock Data API an object is required so we create one specifically for this purpose. Here we need to map each section of the JSON coming as a response from the API to a property in code.
-```
-\Models\StockDataResponse.cs
-```
+First, we create an implementation of the `HttpClient` to centralize the requirements of the external API (its key, its base URL, etc.). All of this inside a *Commons* folder to keep everything organized. `\Commons\StocksHttpClient.cs`.  
 
-So inside the StockDataResponse.cs the structure will be two other classes that simulate the structure of the response JSON, like so:
+Next, a class for the specific service is created, `\Services\StockDataAPIService.cs`. This is going to contain the methods that interact with the external API. All of this, hoping to be later exposed in the Service Layer through interfaces.
+
+In parallel, in order to handle the responses from the Stock Data API an object is required so we create one specifically for this purpose. Here we need to map each section of the JSON coming as a response from the API to a property in code. This class is created inside its own folder, `\Models\StockDataResponse.cs`, and it will contain two other classes inside that simulate the structure of the JSON response, like so:
 ```
 StockDataResponse {
     MetaStockDataResponse, 
@@ -91,9 +82,68 @@ StockDataResponse {
 }
 ```
 
-### **Entity Framework Core**
-//
+### **Persistence**
+In the field of data persistence, the approach for this project is going to be a *Code First* one. We are going to model our reality using C# and then, by the help of some framework tools we are going to translate those lines of code in database structure.  
+The tools selected are **Entity Framework Core (EF)** and the **Fluent API**. The combination of both will provide us with enough ways to delimit, name, abstract and build a robust relational structure to handle the data in our application.
 
+*Previous Requirements*  
+Using the NuGet Package Manager, install the following packages:
+- Entity Framework Core - SqlServer | version 6.0.16
+    - At the **Infrastructure Layer** and at the **Presentation Layer (API Project)**.
+- Entity Framework Core - Tools | version 6.0.16  
+    - Only at the **Infrastructure Layer**.
+
+*Modeling*  
+As the  objective of the **Domain Layer**, here we are going to include every component that modelates the reality of the business context. In the case of our Stock API, we defined 3 main classes that can handle the basic information that we are expected to deliver to the end consumer.
+```
+├── Stocks.Domain
+    ├── Models
+        ├── Exchange.cs                      
+        ├── Stock.cs
+        └── StockQuote.cs
+```
+Moving on to the **Infrastructure Layer**, here we are going to define all the logic related to persist the reality modeled in the **Domain Layer**.  
+Here the implementations are going to be the key, as this is how our application connects to the external world. In this case in particular, Fluent API logic comes here.
+
+In order to keep everything organized, we created the folder `Stocks.Infrastructure\Persistence` and inside this is where te following takes place:  
+First, we created the file responsible to handle the connection string to our database: `Data\ApplicationDBContext.cs`.  
+Next, to create a *migration*, we should open the *Package Manager Console (PM)** and run the specific command for this task.
+```
+add-migration <significant_name> -OutputDir <path_for_migrations>
+```
+Which for the case of our first migration might look like this:
+```
+add-migration AddModelToDB_TblsExchangeNStockNStockQuote -OutputDir Persistence/Migrations
+```
+**Notice that dotnet CLI commands can be used here too. Check this [link](https://learn.microsoft.com/en-us/ef/core/cli/) for further reference.* 
+
+This last Packet Manager command should leave our folder structure as follows:
+```
+├── Stocks.Infrastructure
+    ├── Persistence
+        ├── Data
+        ├   └── ApplicationDBContext.cs        
+        └── Migrations
+            ├── ApplicationDBContextModelSnapshot.cs
+            ├── 19990101120101_AddModelToDB_TblsExchangeNStockNStockQuote.cs
+            └── ...            
+```
+And having our migration created, we must apply it to the database by running:
+```
+update-database
+```
+Finally, any configuration to our models is done in a `FluentConfig` folder inside the same Persistence parent folder. Here, for each one of the classes in the Domain Model folder, we can define rules and relations between them.
+
+Another run of "`add-migration`" and "`update-database`"commands should update our model in the database. Leaving our Persistence structure with the config files and new migration classes as a result of this step, like the following:
+```
+├── Stocks.Infrastructure
+    ├── Persistence
+        ├── ...        
+        └── FluentConfig
+            ├── ExchangeConfig.cs
+            ├── StockConfig.cs
+            └── StockQuoteConfig.cs                 
+```
 ## Installation
 Here some installation notes.
 
