@@ -10,7 +10,13 @@ namespace Stocks.Infrastructure.Helpers
             List<Stock> stocks = new List<Stock>();
             foreach (QuoteStockDataResponse stockQuote in stockDataResponse.Data)
             {
-                stocks.Add(new Stock() { Symbol = stockQuote.Ticker });
+                stocks.Add(new Stock()
+                {
+                    Symbol = stockQuote.Ticker,
+                    Name = stockQuote.Name,
+                    Currency = stockQuote.Currency
+
+                });
             }
             return stocks;
         }
