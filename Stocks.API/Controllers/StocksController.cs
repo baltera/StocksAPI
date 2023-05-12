@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Stocks.Application.Interfaces;
 using Stocks.Domain.Models;
 
 namespace Stocks.API.Controllers
@@ -8,10 +8,17 @@ namespace Stocks.API.Controllers
     [ApiController]
     public class StocksController : ControllerBase
     {
+        private IStocksService _stocksService;
+
+        public StocksController(IStocksService stocksService)
+        {
+            _stocksService = stocksService;
+        }
+
         [HttpGet]
         public async Task<IEnumerable<Stock>> GetStocks([FromQuery] List<string> tickers)
         {
-            return new List<Stock>() { new Stock() { Name = tickers[0] } };
+            return await _stocksService.GetStockData(tickers);
         }
     }
 }
