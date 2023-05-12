@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Stocks.Domain.Models;
 
 namespace Stocks.API.Controllers
 {
@@ -7,9 +8,10 @@ namespace Stocks.API.Controllers
     [ApiController]
     public class StocksController : ControllerBase
     {
-        [HttpGet] public IActionResult GetStocks()
+        [HttpGet]
+        public async Task<IEnumerable<Stock>> GetStocks([FromQuery] List<string> tickers)
         {
-            return Ok();
+            return new List<Stock>() { new Stock() { Name = tickers[0] } };
         }
     }
 }
