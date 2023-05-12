@@ -21,10 +21,16 @@ namespace Stocks.Infrastructure.Services
 
         public async Task<IEnumerable<Stock>> GetStockData(List<string> tickers)
         {
-            string query = "quote?symbols=" + tickers.First();
+            string symbols = BuildQueryString("symbols", tickers);
+            string query = "quote?" + symbols;
             StockDataResponse stockDataResponse = await _httpClient.GetAsync<StockDataResponse>(query);
             List<Stock> stocks = StockDataResponseMapper.ToStockList(stockDataResponse);
             return stocks;
+        }
+
+        private string BuildQueryString(string parameterName, List<string> parameterValues)
+        {
+            return parameterName + "=" + string.Join(",", parameterValues);
         }
     }
 }
