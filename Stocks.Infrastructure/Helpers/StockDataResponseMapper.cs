@@ -10,13 +10,33 @@ namespace Stocks.Infrastructure.Helpers
             List<Stock> stocks = new List<Stock>();
             foreach (QuoteStockDataResponse stockQuote in stockDataResponse.Data)
             {
-                stocks.Add(new Stock()
+                Exchange exchange = new Exchange()
+                {
+                    LongName = stockQuote.ExchangeLong,
+                    Name = stockQuote.ExchangeShort
+                };
+                StockQuote quote = new StockQuote()
+                {
+                    Price = stockQuote.Price,
+                    DayHigh = stockQuote.DayHigh,
+                    DayLow = stockQuote.DayLow,
+                    DayOpen = stockQuote.DayOpen,
+                    PreviousClosePrice = stockQuote.PreviousClosePrice,
+                    DayPercentChange = stockQuote.DayChange,
+                    MarketCap = stockQuote.MarketCap,
+                    Volume = stockQuote.Volume,
+                    LastTradeTime = stockQuote.LastTradeTime,
+                };
+                Stock stock = new Stock()
                 {
                     Symbol = stockQuote.Ticker,
                     Name = stockQuote.Name,
-                    Currency = stockQuote.Currency
+                    Currency = stockQuote.Currency,
+                    Exchange = exchange,
+                    StockQuotes = new List<StockQuote> { quote }
 
-                });
+                };
+                stocks.Add(stock);
             }
             return stocks;
         }
