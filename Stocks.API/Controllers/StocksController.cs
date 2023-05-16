@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Stocks.API.Models.Dto;
+using Stocks.API.Models.Helpers;
 using Stocks.Application.Interfaces;
-using Stocks.Domain.Models;
 
 namespace Stocks.API.Controllers
 {
@@ -16,9 +17,10 @@ namespace Stocks.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Stock>> GetStocks([FromQuery] List<string> tickers)
+        public async Task<IEnumerable<StockDTO>> GetStocks([FromQuery] List<string> tickers)
         {
-            return await _stocksService.GetStockData(tickers);
+            var stocks = await _stocksService.GetStockData(tickers);
+            return StockDTOMapper.ToStockDTOList(stocks);
         }
     }
 }
