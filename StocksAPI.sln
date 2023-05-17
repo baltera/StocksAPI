@@ -5,15 +5,15 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.API", "Stocks.API\Stocks.API.csproj", "{04D1E8D2-E794-4A39-8FB2-C08FD8DEA19B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Domain", "Stocks.Domain\Stocks.Domain.csproj", "{EB47D953-FFEF-4A07-8519-0F2057FB9DA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Domain", "Stocks.Domain\Stocks.Domain.csproj", "{EB47D953-FFEF-4A07-8519-0F2057FB9DA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Infrastructure", "Stocks.Infrastructure\Stocks.Infrastructure.csproj", "{7FA033BA-4389-4820-A102-1731612A620C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Infrastructure", "Stocks.Infrastructure\Stocks.Infrastructure.csproj", "{7FA033BA-4389-4820-A102-1731612A620C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Services", "Stocks.Services\Stocks.Services.csproj", "{4BE2889C-1A89-4FCC-B947-2429D33DEE03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Application", "Stocks.Application\Stocks.Application.csproj", "{4BE2889C-1A89-4FCC-B947-2429D33DEE03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Infrastructure.Tests", "Stocks.Infrastructure.Tests\Stocks.Infrastructure.Tests.csproj", "{583ABC36-C4BE-480D-87F0-A502839C7AC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Infrastructure.Tests", "Stocks.Infrastructure.Tests\Stocks.Infrastructure.Tests.csproj", "{583ABC36-C4BE-480D-87F0-A502839C7AC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocks.Services.Tests", "Stocks.Services.Tests\Stocks.Services.Tests.csproj", "{BD9D6F77-4238-4DCB-A512-024E6172EABD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stocks.Application.Tests", "Stocks.Application.Tests\Stocks.Application.Tests.csproj", "{BD9D6F77-4238-4DCB-A512-024E6172EABD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
