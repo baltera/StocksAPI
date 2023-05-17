@@ -11,7 +11,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<StocksHttpClient>();
+var dataSettings = builder.Configuration.GetSection("Data");
+string API_URL = dataSettings.GetValue<string>("ApiUrl");
+string API_KEY = dataSettings.GetValue<string>("ApiKey");
+
+builder.Services.AddScoped<StocksHttpClient>(serviceProvider =>
+{
+    return new StocksHttpClient(API_URL, API_KEY);
+});
+
 builder.Services.AddHttpClient<IStocksService, StockDataAPIService>();
 builder.Services.AddScoped<IStocksService, StockDataAPIService>();
 
