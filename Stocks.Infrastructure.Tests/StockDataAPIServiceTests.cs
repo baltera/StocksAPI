@@ -11,7 +11,7 @@ namespace Stocks.Infrastructure.Tests
         public StockDataAPIServiceTests(ITestOutputHelper output)
         {
             this._output = output;
-            this._service = new StockDataAPIService(new StocksHttpClient());
+            this._service = new StockDataAPIService(new StocksHttpClient("https://api.stockdata.org/v1/data/", "ApiKey"));
         }
 
         [Fact]
