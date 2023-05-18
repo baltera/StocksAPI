@@ -11,7 +11,7 @@ public class UnitTest1
     public UnitTest1(ITestOutputHelper output)
     {
         this.output = output;
-        this.httpClient = new StocksHttpClient();
+        this.httpClient = new StocksHttpClient("https://api.stockdata.org/v1/data/", "ApiKey");
     }
 
     [Fact]

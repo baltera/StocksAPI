@@ -362,3 +362,4 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /Stocks.API/Properties/ServiceDependencies/baltera-stocks - Zip Deploy/profile.arm.json
+/Stocks.API/appsettings.Development.json
